@@ -295,5 +295,7 @@ int main()
 
 		afficher_itineraire(p, s);
 		cout << "--- " << s.cout << "\n";
+
+		//test
 	}
 }
