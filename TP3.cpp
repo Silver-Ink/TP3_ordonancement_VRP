@@ -7,7 +7,7 @@
 #pragma warning(push)
 // Faux positif 
 #pragma warning(disable:6385)
-// Faux positif sur la lecture hors tableau à cause de la nature du programme avec plein de tableaux dont les indices sont lu depuis d'autre tableaux
+// Faux positif sur la lecture hors tableau ï¿½ cause de la nature du programme avec plein de tableaux dont les indices sont lu depuis d'autre tableaux
 #pragma warning(disable:6386)
 // La taille de certaine structure est trop grande, mais on ne veut pas d'allocations dynamique
 #pragma warning(disable:6262)
@@ -18,9 +18,9 @@ const int nMaxClient = 100;
 
 typedef struct probleme
 {
-	// Indice de ville du dépot (souvent 0)
+	// Indice de ville du dï¿½pot (souvent 0)
 	int depot;
-	// Nombre de ville, dépot compris
+	// Nombre de ville, dï¿½pot compris
 	int nb_ville;
 	int dist[nMaxClient][nMaxClient];
 	int qte[nMaxClient];
@@ -73,7 +73,7 @@ void plus_proche_voisin(probleme& p, solution& s)
 	int position = p.depot;
 
 	int vill_rest[nMaxClient];
-	// On exclus le dépot qui est compris dans le nb_ville
+	// On exclus le dï¿½pot qui est compris dans le nb_ville
 	int nb_vill_rest = p.nb_ville - 1;
 
 	for (i = 1; i < p.nb_ville; i++)
@@ -138,7 +138,7 @@ void plus_proche_voisin_randomised(probleme& p, solution& s)
 	ville_dist list_proche[taille_liste_plus_proche];
 
 	int vill_rest[nMaxClient];
-	// On exclus le dépot qui est compris dans le nb_ville
+	// On exclus le dï¿½pot qui est compris dans le nb_ville
 	int nb_vill_rest = p.nb_ville - 1;
 
 	for (i = 1; i < p.nb_ville; i++)
@@ -232,10 +232,10 @@ void appliquer_2OPT(probleme& p, solution& s)
 
 
 /// <summary>
-/// Décale les éléments de l'itinéraire vers la droite en ramenant le dernier indice au début.
+/// Dï¿½cale les ï¿½lï¿½ments de l'itinï¿½raire vers la droite en ramenant le dernier indice au dï¿½but.
 /// Bornes dep et fin non incluses
 /// </summary>
-/// <param name="s">solution contenant l'itinéraire</param>
+/// <param name="s">solution contenant l'itinï¿½raire</param>
 /// <param name="dep">fin < dep</param>
 /// <param name="fin">fin < dep</param>
 void decal_gauche(solution& s, int dep, int fin)
@@ -251,10 +251,10 @@ void decal_gauche(solution& s, int dep, int fin)
 }
 
 /// <summary>
-/// Décale les éléments de l'itinéraire vers la gauche en ramenant le dernier indice au début.
+/// Dï¿½cale les ï¿½lï¿½ments de l'itinï¿½raire vers la gauche en ramenant le dernier indice au dï¿½but.
 /// Bornes dep et fin non incluses
 /// </summary>
-/// <param name="s">solution contenant l'itinéraire</param>
+/// <param name="s">solution contenant l'itinï¿½raire</param>
 /// <param name="dep">dep < fin</param>
 /// <param name="fin">dep < fin</param>
 void decal_droite(solution& s, int dep, int fin)
@@ -300,6 +300,11 @@ void appliquer_Insertion(probleme& p, solution& s)
 	}
 }
 
+void afficher_cout(solution& s)
+{
+	cout << "> " << s.cout / 1000.0 << " km\n";
+}
+
 int main()
 {
 	probleme p;
@@ -312,9 +317,11 @@ int main()
 	{
 		plus_proche_voisin_randomised(p, s);
 		afficher_itineraire(p, s);
-		cout << "> " << s.cout / 1000.0 << " km\n";
+		afficher_cout(s);
 
-		//test
+		appliquer_2OPT(p, s);
+		afficher_itineraire(p, s);
+		afficher_cout(s);
 	}
 	return 0;
 }
