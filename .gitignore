@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Fosse septique
+TP3.sln
+TP3.vcxproj
+TP3.vcxproj.filters
