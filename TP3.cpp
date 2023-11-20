@@ -54,6 +54,8 @@ void lire_fichier(probleme& p, string fileName)
 
 	repeat(i, p.nb_ville)
 	{
+		int useless;
+		file >> useless;
 		file >> p.qte[i];
 	}
 
@@ -308,11 +310,9 @@ int main()
 	//plus_proche_voisin(p, s);
 	for (int i = 0; i < 1; i++)
 	{
-
 		plus_proche_voisin_randomised(p, s);
-
 		afficher_itineraire(p, s);
-		cout << "--- " << s.cout << "\n";
+		cout << "> " << s.cout / 1000.0 << " km\n";
 
 		//test
 	}

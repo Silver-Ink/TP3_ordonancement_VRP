@@ -142,7 +142,9 @@
     <ClCompile Include="TP3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Allier.txt" />
     <Text Include="Paris.txt" />
+    <Text Include="Puy2Dome.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
