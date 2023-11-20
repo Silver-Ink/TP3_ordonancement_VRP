@@ -2,6 +2,16 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
+#define repeat(_varName, _nbTime) for(int _varName = 0, nb_time = (int)(_nbTime); _varName < nb_time; _varName++)
+#pragma warning(push)
+// Faux positif 
+#pragma warning(disable:6385)
+// Faux positif sur la lecture hors tableau à cause de la nature du programme avec plein de tableaux dont les indices sont lu depuis d'autre tableaux
+#pragma warning(disable:6386)
+// La taille de certaine structure est trop grande, mais on ne veut pas d'allocations dynamique
+#pragma warning(disable:6262)
+
 using namespace std;
 
 const int nMaxClient = 100;
@@ -13,6 +23,7 @@ typedef struct probleme
 	// Nombre de ville, dépot compris
 	int nb_ville;
 	int dist[nMaxClient][nMaxClient];
+	int qte[nMaxClient];
 } probleme;
 
 
@@ -27,8 +38,6 @@ void lire_fichier(probleme& p, string fileName)
 	string word;
 	ifstream file(fileName.c_str());
 
-
-
 	file >> p.depot;
 	file >> p.nb_ville;
 
@@ -39,6 +48,15 @@ void lire_fichier(probleme& p, string fileName)
 			file >> p.dist[i][j];
 		}
 	}
+
+	string line;
+	getline(file, line); // le commentaire
+
+	repeat(i, p.nb_ville)
+	{
+		file >> p.qte[i];
+	}
+
 	return;
 }
 
@@ -298,4 +316,8 @@ int main()
 
 		//test
 	}
+	return 0;
 }
+
+
+#pragma warning(pop)
